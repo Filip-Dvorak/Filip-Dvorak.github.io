@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const https = require('https');
 const querystring = require('querystring');
-const cors = require('cors'); // Import the cors package
+const cors = require('cors');
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 const corsOptions = {
