@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tanečníkův profil</h1>
+        <div class="basic-info">
+            <h2>Základní informace</h2>
+            <div>
+                <label for="first-name">Jméno:</label>
+                <input type="text" id="first-name">
+            </div>
+            <div>
+                <label for="last-name">Příjmení:</label>
+                <input type="text" id="last-name">
+            </div>
+            <button onclick="showInfo()">Zobrazit informace</button>
+            <div id="info-display"></div>
+            <div id="analytics-section" style="display: none;">
+                <h2>Analytika</h2>
+                <div>
+                    <label for="category">Kategorie:</label>
+                    <select id="category">
+                        <option value="Dospělí-A-LAT">Dospělí-A-LAT</option>
+                        <option value="Dospělí-B-LAT">Dospělí-B-LAT</option>
+                        <option value="Dospělí-C-LAT">Dospělí-C-LAT</option>
+                        <option value="Dospělí-D-LAT">Dospělí-D-LAT</option>
+                        <option value="Dospělí-E-LAT">Dospělí-E-LAT</option>
+                    </select>
+                </div>
+                <div>
+                    <button id="averageScore-button" onclick="showAveragePlacement()">Vypočítat</button>
+                </div>
+                <div id="averageScore-display"></div>
+            </div>
+        </div>
+        <div class="competition-info">
+            <h2>Účast v soutěžích</h2>
+            <table id="competition-table">
+                <tr>
+                    <th>Datum</th>
+                    <th>Název soutěže</th>
+                    <th>Umístění</th>
+                </tr>
+                <!-- Data o soutěžích bude dynamicky vkládána pomocí JavaScriptu -->
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

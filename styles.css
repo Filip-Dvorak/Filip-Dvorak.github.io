@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.basic-info div {
+    margin-bottom: 10px;
+}
+
+.basic-info input {
+    width: 200px;
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#info-display {
+    margin-top: 10px;
+}
+
+.competition-info table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.competition-info th, .competition-info td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.competition-info th {
+    background-color: #f2f2f2;
+}
+
+.competition-info tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
