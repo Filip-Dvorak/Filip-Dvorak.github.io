@@ -77,7 +77,7 @@ function showTable(){
 
 async function getIDT(firstName,lastName){
     try {
-        const response = await fetch('http://localhost:3000/getProfileIDT', {
+        const response = await fetch('https://web-3knl.onrender.com/getProfileIDT', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -97,7 +97,7 @@ async function getIDT(firstName,lastName){
 
 async function getCompetitions(idt){
     try {
-        const response = await fetch(`http://localhost:3000/getSouteze/${idt}`);
+        const response = await fetch(`https://web-3knl.onrender.com/getSouteze/${idt}`);
         const data = await response.json();
         console.log('Competitions:', data);
         return data;
