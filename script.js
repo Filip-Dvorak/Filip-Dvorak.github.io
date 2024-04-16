@@ -3,6 +3,12 @@ function showInfo() {
     var lastName = document.getElementById("last-name").value;
     var idt = "";
     
+    //refresh the table before continuing
+    var table = document.getElementById("competition-table");
+    var rowCount = table.rows.length;
+    for (var i = rowCount - 1; i > 0; i--) {
+        table.deleteRow(i);
+    }
 
 
     getIDT(firstName, lastName)
