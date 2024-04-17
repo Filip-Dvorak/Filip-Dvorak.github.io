@@ -1,8 +1,11 @@
 function showInfo() {
     var firstName = document.getElementById("first-name").value;
     var lastName = document.getElementById("last-name").value;
+    const loadingSpinner = document.getElementById("loading-spinner");
     var idt = "";
-    
+
+    loadingSpinner.style.display = "block";
+
     //refresh the table before continuing
     var table = document.getElementById("competition-table");
     var rowCount = table.rows.length;
@@ -24,7 +27,8 @@ function showInfo() {
         infoDisplay.innerHTML = "<p><strong>IDT:</strong>" + idt + "</p>" +
                                 "<p><strong>Jméno:</strong> " + firstName + "</p>" +
                                 "<p><strong>Příjmení:</strong> " + lastName + "</p>";
-        
+
+        loadingSpinner.style.display = "none";
         showAnalytics();
         showTable();
         

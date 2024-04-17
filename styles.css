@@ -50,3 +50,6 @@ button:hover {
 .competition-info tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+#loading-spinner img{
+    width: 10%;
+}
