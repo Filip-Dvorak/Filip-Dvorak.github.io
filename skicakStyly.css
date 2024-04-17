@@ -1,0 +1,75 @@
+
+    /* Table container */
+.table-container {
+    position: relative;
+}
+
+/* Expandable content styling */
+.expandable-content {
+    display: none;
+    position: absolute;
+    width: calc(100% - 16px);
+    left: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* Styling for expanded rows */
+tr.expanded .expandable-content {
+    display: block;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Expandable content styling */
+.expandable-content {
+    display: none;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+/* Hover effect on rows */
+tr:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+/* Styling for expanded rows */
+tr.expanded .expandable-content {
+    display: table-cell;
+}
+
+/* Styling for links */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+li a {
+    color: #333;
+    text-decoration: none;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
