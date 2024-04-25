@@ -5,6 +5,10 @@ const https = require('https');
 const querystring = require('querystring');
 const cors = require('cors');
 const PORT = process.env.PORT || 3000;
+const axios = require('axios');
+const cheerio = require('cheerio');
+const pretty = require('pretty');
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 const corsOptions = {
@@ -38,6 +42,17 @@ app.get('/getSouteze/:idt', cors(corsOptions), async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
+
+app.get('/getNadchazejiciSouteze', cors(corsOptions), async (req, res) => {
+    const url = "https://www.csts.cz/cs/KalendarSoutezi/Seznam?OdData=04%2F01%2F2024%2000%3A00%3A00&DoData=07%2F31%2F2024%2000%3A00%3A00&Region=0"; //TODO: UP-TO-DATE URL
+    try {
+        const upcomingCompetitions = await getUpcomingCompetitions(url);
+        res.json(upcomingCompetitions);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
 });
 
 
@@ -110,24 +125,39 @@ async function getSouteze(idt) {
     }
 }
 
+async function getUpcomingCompetitions(url) {
+    try {
+        const response = await axios.get(url);
+        const $ =  cheerio.load(response.data);
+        //console.log(pretty($.html()));
+        const divsWithText = [];
+
+        $('.kalendar-box-1').each((index, element) => {
+            const text = $(element).text().trim();
+            const splitText = text.split(',');
+            divsWithText.push(splitText);
+        });
+
+        return divsWithText;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+
+
 
  // Example usage:
  const jmeno = "Anežka";
  const prijmeni = "Augustinová";
  let idt = null;
 
-getProfileIDT(jmeno, prijmeni)
-    .then((profileIDT) => {
-        console.log("Profile IDT: ", profileIDT);
-        idt = profileIDT;
-        return getSouteze(idt); // Wait for getSouteze to finish before moving on
+
+const url = 'https://example.com'; // Replace 'https://example.com' with the URL you want to scrape
+getUpcomingCompetitions("https://www.csts.cz/cs/KalendarSoutezi/Seznam?OdData=04%2F01%2F2024%2000%3A00%3A00&DoData=07%2F31%2F2024%2000%3A00%3A00&Region=0")
+    .then(divsWithText => {
+        console.log(divsWithText);
     })
-    .then((souteze) => {
-        console.log("Souteze: ", souteze);
-        const kat = "Dospělí-A-LAT";
-        const result = averageResult(kat, souteze);
-        console.log("Average Placement: ", result);
-    })
-    .catch((error) => {
-        console.error("Error: ", error);
+    .catch(error => {
+        console.error('Error:', error);
     });
