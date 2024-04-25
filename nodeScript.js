@@ -4,7 +4,8 @@ const app = express();
 const https = require('https');
 const querystring = require('querystring');
 const cors = require('cors');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
+//const PORT = 3000;
 const axios = require('axios');
 const cheerio = require('cheerio');
 const pretty = require('pretty');
@@ -34,13 +35,14 @@ app.listen(PORT, () => {
     console.log('Server is running on port ${PORT}');
 });
 
-app.get('/getSouteze/:idt', cors(corsOptions), async (req, res) => {
-    const idt = req.params.idt;
+app.get('/getSouteze/:idt', async (req, res) => {
     try {
-        const souteze = await getSouteze(idt);
-        res.json(souteze);
+        const response = await fetch(`https://web-3knl.onrender.com/getSouteze/${idt}`);
+        const data = await response.json();
+        console.log('Competitions:', data);
+        return data;
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error:', error);
     }
 });
 

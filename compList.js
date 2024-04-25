@@ -1,11 +1,23 @@
 
-    const competitions = [
-        ['Jarní cena NKC Nové Strašecí ', ' Nové Strašecí'],
-        ['Jarní cena NKC Nové Strašecí TPV ', ' Nové Strašecí'],
-        // Add more competitions as needed
-    ];
+async function populateCompetitionsArray(){
+    try {
+        const response = await fetch('https://web-3knl.onrender.com/getNadchazejiciSouteze');
+        const data = await response.json();
+        console.log('Loaded comps:', data);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+populateCompetitionsArray().then(data => {
+    const competitions = data;
     console.log(competitions);
     generateRows(competitions);
+})
+
+
+
+
 
     function generateRows(competitions) {
         const rowData = [];
