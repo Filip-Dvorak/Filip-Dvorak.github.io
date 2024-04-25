@@ -132,15 +132,15 @@ async function getUpcomingCompetitions(url) {
         const response = await axios.get(url);
         const $ =  cheerio.load(response.data);
         //console.log(pretty($.html()));
-        const divsWithText = [];
+        const compNames = [];
 
         $('.kalendar-box-1').each((index, element) => {
             const text = $(element).text().trim();
             const splitText = text.split(',');
-            divsWithText.push(splitText);
+            compNames.push(splitText);
         });
 
-        return divsWithText;
+        return compNames;
     } catch (error) {
         throw new Error(error);
     }

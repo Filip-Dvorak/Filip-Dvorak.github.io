@@ -1,4 +1,6 @@
 
+const loadingSpinner = document.getElementById("loading-spinner");
+loadingSpinner.style.display = "block";
 async function populateCompetitionsArray(){
     try {
         const response = await fetch('https://web-3knl.onrender.com/getNadchazejiciSouteze');
@@ -13,6 +15,7 @@ populateCompetitionsArray().then(data => {
     const competitions = data;
     console.log(competitions);
     generateRows(competitions);
+    loadingSpinner.style.display = "none";
 })
 
 
