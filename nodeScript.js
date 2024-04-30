@@ -35,7 +35,7 @@ app.listen(PORT, () => {
     console.log('Server is running on port ${PORT}');
 });
 
-app.get('/getSouteze/:idt', async (req, res) => {
+app.get('/getSouteze/:idt', cors(corsOptions), async (req, res) => {
     const idt = req.params.idt;
     try {
         const souteze = await getSouteze(idt);
