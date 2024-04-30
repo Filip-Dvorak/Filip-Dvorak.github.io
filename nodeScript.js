@@ -36,13 +36,12 @@ app.listen(PORT, () => {
 });
 
 app.get('/getSouteze/:idt', async (req, res) => {
+    const idt = req.params.idt;
     try {
-        const response = await fetch(`https://web-3knl.onrender.com/getSouteze/${idt}`);
-        const data = await response.json();
-        console.log('Competitions:', data);
-        return data;
+        const souteze = await getSouteze(idt);
+        res.json(souteze);
     } catch (error) {
-        console.error('Error:', error);
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -154,12 +153,14 @@ async function getUpcomingCompetitions(url) {
  const prijmeni = "Augustinová";
  let idt = null;
 
+ 
 
-const url = 'https://example.com'; // Replace 'https://example.com' with the URL you want to scrape
-getUpcomingCompetitions("https://www.csts.cz/cs/KalendarSoutezi/Seznam?OdData=04%2F01%2F2024%2000%3A00%3A00&DoData=07%2F31%2F2024%2000%3A00%3A00&Region=0")
-    .then(divsWithText => {
-        console.log(divsWithText);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+
+// const url = 'https://example.com'; // Replace 'https://example.com' with the URL you want to scrape
+// getUpcomingCompetitions("https://www.csts.cz/cs/KalendarSoutezi/Seznam?OdData=04%2F01%2F2024%2000%3A00%3A00&DoData=07%2F31%2F2024%2000%3A00%3A00&Region=0")
+//     .then(divsWithText => {
+//         console.log(divsWithText);
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
