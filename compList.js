@@ -26,7 +26,7 @@ populateCompetitionsArray().then(data => {
         const rowData = [];
         competitions.souteze.forEach(competition => {
             const name = competition.nazev;
-            const place = competition.misto;
+            const place = competition.misto.replace(",","");
             const links = competition.kategorie;
             rowData.push({Name: name, Place: place, links: links});
         });
