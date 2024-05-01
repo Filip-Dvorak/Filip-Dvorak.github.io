@@ -25,9 +25,9 @@ populateCompetitionsArray().then(data => {
     function generateRows(competitions) {
         const rowData = [];
         competitions.forEach(competition => {
-            const name = competition[0];
-            const place = competition[1];
-            const links = ['link1','link2'];
+            const name = competition.nazev;
+            const place = competition.misto;
+            const links = competition.kategorie;
             rowData.push({Name: name, Place: place, links: links});
         });
 
