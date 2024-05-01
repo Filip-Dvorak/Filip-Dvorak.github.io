@@ -130,21 +130,29 @@ async function getUpcomingCompetitions(url) {
     try {
         const response = await axios.get(url);
         const $ =  cheerio.load(response.data);
-        //console.log(pretty($.html()));
-        const compNames = [];
+        //console.log(pretty($.html()));    
+        const souteze = [];
 
-        $('.kalendar-box-1').each((index, element) => {
-            const text = $(element).text().trim();
-            const splitText = text.split(',');
-            
-            $('.kalendar-box-2').each((index, element) => {
-                let spanElement = $(element).find('.plista-b');
-                console.log(splitText,spanElement.html());
-            });
-            compNames.push(splitText);
-        });
+$('.kalendar-box-1').each((index, element) => {
+  const nazev = $(element).find('.big-text').text();
+  const misto = $(element).find('span').last().text().trim();
 
-        return compNames;
+  const kategorie = [];
+  $(element).next('.kalendar-box-2').find('table.simple').each((i, el) => {
+    const text = $(el).find('td:nth-child(2)').text().trim();
+    const categories = text.split(', ');
+    kategorie.push(...categories);
+  });
+
+  const odkaz = $(element).next('.kalendar-box-2').find('a').attr('href');
+
+  souteze.push({ nazev, misto, kategorie, odkaz });
+});
+
+const output = { souteze };
+console.log(JSON.stringify(output, null, 2));
+
+        return output;
     } catch (error) {
         throw new Error(error);
     }
