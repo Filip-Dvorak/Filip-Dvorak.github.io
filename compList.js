@@ -14,7 +14,7 @@ async function populateCompetitionsArray(){
 populateCompetitionsArray().then(data => {
     const competitions = data;
     console.log(competitions);
-    generateRows(competitions);
+    generateRows(data);
     loadingSpinner.style.display = "none";
 })
 
