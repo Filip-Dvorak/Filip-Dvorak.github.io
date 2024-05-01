@@ -27,7 +27,7 @@ populateCompetitionsArray().then(data => {
         competitions.forEach(competition => {
             const name = competition[0];
             const place = competition[1];
-            const links = [];
+            const links = ['link1','link2'];
             rowData.push({Name: name, Place: place, links: links});
         });
 

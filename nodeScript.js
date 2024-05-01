@@ -136,6 +136,11 @@ async function getUpcomingCompetitions(url) {
         $('.kalendar-box-1').each((index, element) => {
             const text = $(element).text().trim();
             const splitText = text.split(',');
+            
+            $('.kalendar-box-2').each((index, element) => {
+                let spanElement = $(element).find('.plista-b');
+                console.log(splitText,spanElement.html());
+            });
             compNames.push(splitText);
         });
 
@@ -148,11 +153,14 @@ async function getUpcomingCompetitions(url) {
 
 
 
+
  // Example usage:
  const jmeno = "Anežka";
  const prijmeni = "Augustinová";
  let idt = null;
 
+ const url ="https://www.csts.cz/cs/KalendarSoutezi/Seznam?OdData=04%2F01%2F2024%2000%3A00%3A00&DoData=07%2F31%2F2024%2000%3A00%3A00&Region=0"; //TODO: UP-TO-DATE URL
+getUpcomingCompetitions(url)
  
 
 
