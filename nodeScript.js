@@ -187,12 +187,14 @@ async function getCompetitors(url,category) {
  const prijmeni = "Augustinová";
  let idt = null;
 
-const category = 'Dospělí-A-STT';
+const category = 'Dospělí-A-LAT';
 const url ="https://www.csts.cz/cs/KalendarSoutezi/SeznamPrihlasenych/6603"
 const competitors = getCompetitors(url, category).then(competitors => {
     competitors.forEach(competitor => {
         console.log(`${competitor.name1}\t${competitor.name2}\t${competitor.club}`);
     });
+    console.log(competitors.length);
+    console.log(competitors);
 });
 
 

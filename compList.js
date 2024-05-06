@@ -28,7 +28,8 @@ populateCompetitionsArray().then(data => {
             const name = competition.nazev;
             const place = competition.misto.replace(",","");
             const links = competition.kategorie;
-            rowData.push({Name: name, Place: place, links: links});
+            const src = competition.odkaz;
+            rowData.push({Name: name, Place: place, links: links,src:src});
         });
 
 // Populate table rows with data
@@ -39,13 +40,13 @@ populateCompetitionsArray().then(data => {
             <td>${rowData.Name}</td>
             <td>${rowData.Place}</td>
         `;
-            tr.addEventListener('click', () => toggleRowExpansion(tr, rowData.links));
+            tr.addEventListener('click', () => toggleRowExpansion(tr, rowData.links,rowData.src));
             tbody.appendChild(tr);
         });
     }
 
 // Function to toggle row expansion
-    function toggleRowExpansion(row, links) {
+    function toggleRowExpansion(row, links,src) {
         const nextRow = row.nextSibling;
         if (nextRow && nextRow.classList.contains('expandable-row')) {
             // Remove expandable row if already present
@@ -56,7 +57,7 @@ populateCompetitionsArray().then(data => {
             expandableRow.className = 'expandable-row';
             expandableRow.innerHTML = `
                 <td colspan="2">
-                    <ul>${links.map(link => `<li>${link}</li>`).join('')}</ul>
+                    <ul>${links.map(link => `<li><a href="${src}">${link}</a></li>`).join('')}</ul>
                 </td>
             `;
             row.parentNode.insertBefore(expandableRow, nextRow);
