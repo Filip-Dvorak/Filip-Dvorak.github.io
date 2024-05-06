@@ -158,7 +158,27 @@ console.log(JSON.stringify(output, null, 2));
     }
 }
 
+async function getCompetitors(url,category) {
+    const response = await axios.get(url);
+    const $ =  cheerio.load(response.data);
+    const competitors = [];
 
+    // Find the table for the specified category
+    const categoryTable = $(`strong:contains("${category}")`).closest('.pso-box1').find('.tbl-prihl');
+
+    // Extract data from each row of the table
+    $(categoryTable).find('tr').each((index, row) => {
+        const columns = $(row).find('td');
+        const competitor = {
+            name1: $(columns[0]).text().trim(),
+            name2: $(columns[1]).text().trim(),
+            club: $(columns[2]).text().trim()
+        };
+        competitors.push(competitor);
+    });
+
+    return competitors;
+}
 
 
 
@@ -167,8 +187,18 @@ console.log(JSON.stringify(output, null, 2));
  const prijmeni = "Augustinová";
  let idt = null;
 
- const url ="https://www.csts.cz/cs/KalendarSoutezi/Seznam?OdData=04%2F01%2F2024%2000%3A00%3A00&DoData=07%2F31%2F2024%2000%3A00%3A00&Region=0"; //TODO: UP-TO-DATE URL
-getUpcomingCompetitions(url)
+const category = 'Dospělí-A-STT';
+const url ="https://www.csts.cz/cs/KalendarSoutezi/SeznamPrihlasenych/6603"
+const competitors = getCompetitors(url, category).then(competitors => {
+    competitors.forEach(competitor => {
+        console.log(`${competitor.name1}\t${competitor.name2}\t${competitor.club}`);
+    });
+});
+
+
+
+// const url ="https://www.csts.cz/cs/KalendarSoutezi/Seznam?OdData=04%2F01%2F2024%2000%3A00%3A00&DoData=07%2F31%2F2024%2000%3A00%3A00&Region=0"; //TODO: UP-TO-DATE URL
+// getUpcomingCompetitions(url)
  
 
 
