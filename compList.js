@@ -36,11 +36,12 @@ populateCompetitionsArray().then(data => {
         const tbody = document.querySelector('#myTable tbody');
         rowData.forEach(rowData => {
             const tr = document.createElement('tr');
+            let src = rowData.src.match(/\d+/g);
             tr.innerHTML = `
             <td>${rowData.Name}</td>
             <td>${rowData.Place}</td>
         `;
-            tr.addEventListener('click', () => toggleRowExpansion(tr, rowData.links,rowData.src));
+            tr.addEventListener('click', () => toggleRowExpansion(tr, rowData.links,src));
             tbody.appendChild(tr);
         });
     }
@@ -57,7 +58,7 @@ populateCompetitionsArray().then(data => {
             expandableRow.className = 'expandable-row';
             expandableRow.innerHTML = `
                 <td colspan="2">
-                    <ul>${links.map(link => `<li><a href="${src}">${link}</a></li>`).join('')}</ul>
+                    <ul>${links.map(link => `<li><a href="detail.html?src=${src}&kat=${link}">${link}</a></li>`).join('')}</ul>
                 </td>
             `;
             row.parentNode.insertBefore(expandableRow, nextRow);
