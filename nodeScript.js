@@ -45,6 +45,18 @@ app.get('/getSouteze/:idt', cors(corsOptions), async (req, res) => {
     }
 });
 
+app.get('/getCompetitors/:src/:kat', cors(corsOptions),async (req,res) =>{
+    const src = req.params.src;
+    const url = 'https://www.csts.cz/cs/KalendarSoutezi/SeznamPrihlasenych/' + src;
+    const category = req.params.kat;
+    try{
+        const competitors = await getCompetitors(url,category);
+        res.json(competitors);
+    }catch(error){
+        res.status(500).json({error: error.message});
+    }
+});
+
 app.get('/getNadchazejiciSouteze', cors(corsOptions), async (req, res) => {
     const url = "https://www.csts.cz/cs/KalendarSoutezi/Seznam?OdData=04%2F01%2F2024%2000%3A00%3A00&DoData=07%2F31%2F2024%2000%3A00%3A00&Region=0"; //TODO: UP-TO-DATE URL
     try {

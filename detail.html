@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body onload="getCompetitors()">
 
     <div class="competition-info">
         <h2>Seznam přihlášených</h2>
@@ -28,14 +30,15 @@
 
 
 
-    <script src="detail.js"></script>
+    <script src="compDetail.js"></script>
     <script>
-    const queryString = window.location.search;
-    console.log(queryString);
-    const urlParams = new URLSearchParams(queryString);
+        // const queryString = window.location.search;
+        // console.log(queryString);
+        // const urlParams = new URLSearchParams(queryString);
 
-    console.log(urlParams.get('src'));
-    console.log(urlParams.get('kat'));
+        // console.log(urlParams.get('src'));
+        // console.log(urlParams.get('kat'));
     </script>
 </body>
+
 </html>
