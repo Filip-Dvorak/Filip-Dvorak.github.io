@@ -5,25 +5,24 @@ function getCompetitors(){
     const queryString = window.location.search;
     console.log(queryString);
     const urlParams = new URLSearchParams(queryString);
-    const src=urlParams.get('src');
-    const kat=urlParams.get('kat');
+    const src = urlParams.get('src');
+    const kat = urlParams.get('kat');
 
     console.log('SRC:' + src);
-    console.log('KAT:'+ kat);
+    console.log('KAT:' + kat);
 
-    let fetchOutput=fetchCompetitors(src, kat).then((data) => {
-        competitorsList = data;
-        console.log(competitorsList);
-        showTable();
-      }).catch((error) => {
-        console.log("Error:" + error);
-      });
-    
-    console.log(fetchOutput);
-
+    fetchCompetitors(src, kat)
+        .then((data) => {
+            // Call showTable function with the fetched data
+            competitorsList=data;
+            showTable(data);
+        })
+        .catch((error) => {
+            console.log("Error:" + error);
+        });
 }
 
-async function fetchCompetitors(src,kat){
+async function fetchCompetitors(src, kat) {
     try {
         const response = await fetch(`https://web-3knl.onrender.com/getCompetitors/${src}/${kat}`);
         const data = await response.json();
@@ -34,7 +33,7 @@ async function fetchCompetitors(src,kat){
     }
 }
 
-function showTable(){
+function showTable(competitorsList){
     var table = document.getElementById("competition-table");
     for (var i = 0; i < competitorsList.length; i++) {
         var row = table.insertRow(i + 1);
