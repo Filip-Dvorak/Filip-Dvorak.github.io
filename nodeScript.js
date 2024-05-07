@@ -198,9 +198,9 @@ async function getCompetitors(url,category) {
 
 
  // Example usage:
- const jmeno = "Anežka";
- const prijmeni = "Augustinová";
- let idt = null;
+const jmeno = "Anežka";
+const prijmeni = "Augustinová";
+let idt = null;
 
 const category = 'Dospělí-A-LAT';
 const url ="https://www.csts.cz/cs/KalendarSoutezi/SeznamPrihlasenych/6603"
