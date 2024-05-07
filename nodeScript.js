@@ -49,6 +49,9 @@ app.get('/getCompetitors/:src/:kat', cors(corsOptions),async (req,res) =>{
     const src = req.params.src;
     const url = 'https://www.csts.cz/cs/KalendarSoutezi/SeznamPrihlasenych/' + src;
     const category = req.params.kat;
+
+    console.log("Parametry: " + url,category)
+
     try{
         const competitors = await getCompetitors(url,category);
         res.json(competitors);
