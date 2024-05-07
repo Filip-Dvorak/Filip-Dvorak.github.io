@@ -9,7 +9,13 @@ function getCompetitors(){
     console.log(urlParams.get('src'));
     console.log(urlParams.get('kat'));
 
-    competitors = fetchCompetitors(src,kat);
+    fetchCompetitors(src, kat).then((response) => {
+        competitors=response.data;
+        console.log(competitors);
+        showTable();
+      }).catch((error) => {
+        console.log(error);
+      });
 
 }
 
@@ -26,7 +32,7 @@ async function fetchCompetitors(src,kat){
 
 function showTable(){
     var table = document.getElementById("competition-table");
-    for (var i = 0; i < competitions.length; i++) {
+    for (var i = 0; i < competitors.length; i++) {
         var row = table.insertRow(i + 1);
         var partnerCell = row.insertCell(0);
         var partnerkaCell = row.insertCell(1);
