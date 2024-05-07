@@ -11,8 +11,8 @@ function getCompetitors(){
     console.log('SRC:' + src);
     console.log('KAT:'+ kat);
 
-    fetchCompetitors(src, kat).then((competitors) => {
-        competitorsList = competitors;
+    fetchCompetitors(src, kat).then((data) => {
+        competitorsList = data;
         console.log(competitorsList);
         showTable();
       }).catch((error) => {
