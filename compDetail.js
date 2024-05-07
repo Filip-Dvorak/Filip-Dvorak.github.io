@@ -16,7 +16,7 @@ function getCompetitors(){
         console.log(competitors);
         showTable();
       }).catch((error) => {
-        console.log(error);
+        console.log("Error:" + error);
       });
 
 }
@@ -25,7 +25,7 @@ async function fetchCompetitors(src,kat){
     try {
         const response = await fetch(`https://web-3knl.onrender.com/getCompetitors/${src}/${kat}`);
         const data = await response.json();
-        console.log('Competitions:', data);
+        console.log('Competitors:', data);
         return data;
     } catch (error) {
         console.error('Error:', error);
