@@ -1,4 +1,4 @@
-let competitors=[];
+let competitorsList=[];
 
 
 function getCompetitors(){
@@ -11,9 +11,9 @@ function getCompetitors(){
     console.log('SRC:' + src);
     console.log('KAT:'+ kat);
 
-    fetchCompetitors(src, kat).then((response) => {
-        competitors=response.data;
-        console.log(competitors);
+    fetchCompetitors(src, kat).then((competitors) => {
+        competitorsList = competitors;
+        console.log(competitorsList);
         showTable();
       }).catch((error) => {
         console.log("Error:" + error);
@@ -34,15 +34,15 @@ async function fetchCompetitors(src,kat){
 
 function showTable(){
     var table = document.getElementById("competition-table");
-    for (var i = 0; i < competitors.length; i++) {
+    for (var i = 0; i < competitorsList.length; i++) {
         var row = table.insertRow(i + 1);
         var partnerCell = row.insertCell(0);
         var partnerkaCell = row.insertCell(1);
         var klubCell = row.insertCell(2);
         var predikceCell = row.insertCell(3);
 
-        dateCell.innerHTML = competitions[i].name1;
-        nameCell.innerHTML = competitions[i].name2;
-        placementCell.innerHTML = competitions[i].club;
+        dateCell.innerHTML = competitorsList[i].name1;
+        nameCell.innerHTML = competitorsList[i].name2;
+        placementCell.innerHTML = competitorsList[i].club;
     }
 }
