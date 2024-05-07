@@ -42,8 +42,8 @@ function showTable(competitorsList){
         var klubCell = row.insertCell(2);
         var predikceCell = row.insertCell(3);
 
-        dateCell.innerHTML = competitorsList[i].name1;
-        nameCell.innerHTML = competitorsList[i].name2;
-        placementCell.innerHTML = competitorsList[i].club;
+        partnerCell.innerHTML = competitorsList[i].name1;
+        partnerkaCell.innerHTML = competitorsList[i].name2;
+        klubCell.innerHTML = competitorsList[i].club;
     }
 }
