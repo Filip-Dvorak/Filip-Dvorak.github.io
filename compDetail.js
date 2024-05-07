@@ -5,9 +5,11 @@ function getCompetitors(){
     const queryString = window.location.search;
     console.log(queryString);
     const urlParams = new URLSearchParams(queryString);
+    const src=urlParams.get('src');
+    const kat=urlParams.get('kat');
 
-    console.log(urlParams.get('src'));
-    console.log(urlParams.get('kat'));
+    console.log('SRC:' + src);
+    console.log('KAT:'+ kat);
 
     fetchCompetitors(src, kat).then((response) => {
         competitors=response.data;
