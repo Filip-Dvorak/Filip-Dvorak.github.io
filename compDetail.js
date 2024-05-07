@@ -15,6 +15,10 @@ function getCompetitors(){
         .then((data) => {
             // Call showTable function with the fetched data
             competitorsList=data;
+            if(data==[])
+                {
+                    alert("Na soutež se nikdo nepřihlásil :(")
+                }
             showTable(data);
         })
         .catch((error) => {
