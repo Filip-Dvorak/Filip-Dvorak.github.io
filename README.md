@@ -7,4 +7,4 @@ Funkce:
  - Analýza výsledků umístění 
  - Predikce výsledků nadcházejících soutěží
 
- 
+ > Backend běží na free tieru render.com. Doba pro zpracování prvního dotazu může být tedy i pár minut dlouhá.
